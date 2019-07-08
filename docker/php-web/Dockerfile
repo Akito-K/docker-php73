@@ -2,6 +2,10 @@ FROM php:7.3-apache
 
 RUN  a2enmod rewrite
 
+ENV TZ Asia/Tokyo
+RUN echo "${TZ}" > /etc/timezone \
+   && dpkg-reconfigure -f noninteractive tzdata
+
 # Install Xdebug
 RUN curl -fsSL 'https://xdebug.org/files/xdebug-2.7.1.tgz' -o xdebug.tar.gz \
     && mkdir -p xdebug \
@@ -42,7 +46,8 @@ RUN curl -sl https://deb.nodesource.com/setup_12.x | bash - \
     pgsql \
     zip \
     opcache \
-    gd
+    gd \
+    nano
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
