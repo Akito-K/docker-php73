@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php-web:
-    image: akitokageyama/php-73
+    image: akitokageyama/php73
     container_name: php-web
     working_dir: /var/www
     ports:
