@@ -34,6 +34,7 @@ RUN curl -sl https://deb.nodesource.com/setup_12.x | bash - \
     default-libmysqlclient-dev \
     ruby-full \
     nodejs \
+    nano \
     && rm -r /var/lib/apt/lists/* \
     && docker-php-ext-configure pdo_mysql --with-pdo-mysql=mysqlnd \
     && docker-php-ext-install \
