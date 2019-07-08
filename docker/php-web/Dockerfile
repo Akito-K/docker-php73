@@ -46,8 +46,7 @@ RUN curl -sl https://deb.nodesource.com/setup_12.x | bash - \
     pgsql \
     zip \
     opcache \
-    gd \
-    nano
+    gd
 
 # Install composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer
