@@ -1,24 +1,24 @@
 version: '3'
 
 services:
-  php-web:
+  php-web0:
     image: akitokageyama/php73
-    container_name: php-web
+    container_name: php-web0
     working_dir: /var/www
     ports:
-      - 10080:80
+      - 10100:80
     links:
-      - mysql
+      - mysql0
     volumes:
       - "./root:/var/www"
       - "./docker/php-web/php.ini:/usr/local/etc/php/php.ini"
       - "./docker/php-web/custom-vhost.conf:/etc/apache2/sites-available/000-default.conf"
 
-  mysql:
+  mysql0:
     image: library/mysql:5.7
-    container_name: mysql
+    container_name: mysql0
     ports:
-      - 13306:3306
+      - 13400:3306
     volumes:
       - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
     environment:
@@ -27,16 +27,17 @@ services:
       - MYSQL_USER=test
       - MYSQL_PASSWORD=test
 
-  phpmyadmin:
+  phpmyadmin0:
     image: phpmyadmin/phpmyadmin
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST=mysql
+      - PMA_HOST=mysql0
       - PMA_USER=test
       - PMA_PASSWORD=test
     links:
-      - mysql
+      - mysql0
     ports:
-      - 4040:80
+      - 14100:80
     volumes:
-      - ./phpmyadmin/sessions:/sessions
+      - "./docker/phpmyadmin/php.ini:/usr/local/etc/php/conf.d/custom.ini"
+      - "./docker/phpmyadmin/sessions:/sessions"
