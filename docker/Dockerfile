@@ -17,7 +17,7 @@ RUN curl -fsSL 'https://xdebug.org/files/xdebug-2.7.1.tgz' -o xdebug.tar.gz \
     && rm -r xdebug \
     && docker-php-ext-enable xdebug
 
-    COPY ./php.ini /usr/local/etc/php/php.ini
+    COPY ./php-web/php.ini /usr/local/etc/php/php.ini
     ENV APT_KEY_DONT_WARN_ON_DANGEROUS_USAGE = DontWarn
 
 RUN apt-get update && apt-get install -y \
